@@ -1,7 +1,10 @@
-<script setup>
-import { h,ref} from "vue";
-import { NButton, useMessage } from "naive-ui";
+<template>
+  <n-data-table :columns="columns" :data="data" :pagination="pagination" :bordered="false" />
+</template>
 
+<script setup>
+import { h, ref } from "vue";
+import { NButton, useMessage } from "naive-ui";
 
 const createColumns = ({
   play
@@ -39,7 +42,6 @@ const createColumns = ({
 };
 
 
-
 const data = [
   { no: 3, name: "Wonderwall", type: "4:18" },
   { no: 4, name: "Don't Look Back in Anger", type: "4:48" },
@@ -47,17 +49,8 @@ const data = [
 ];
 
 const columns = createColumns({
-        play(row) {
-          message.info(`Play ${row.title}`);
-        }
-      })
+  play(row) {
+    message.info(`Play ${row.title}`);
+  }
+})
 </script>
-<template>
-      <n-data-table
-    :columns="columns"
-    :data="data"
-    :pagination="pagination"
-    :bordered="false"
-  />
-  
-</template>

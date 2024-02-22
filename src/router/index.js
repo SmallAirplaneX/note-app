@@ -6,38 +6,58 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/HomeView.vue')
+      component: () => import('@/views/page/home/index.vue'),
+      children: [
+        {
+          path: '/editNote',
+          name: 'editNote',
+          component: () => import('@/views/EditNoteView.vue'),
+          meta:{
+            title:"编辑笔记"
+          }
+        },
+        {
+          path: '/manageNotes',
+          name: 'manageNotes',
+          component: () => import('@/views/ManageNotesView.vue'),
+          meta:{
+            title:"编辑笔记"
+          }
+        },
+        {
+          path: '/editTemplate',
+          name: 'editTemplate',
+          component: () => import('@/views/EditTemplateView.vue'),
+          meta:{
+            title:"编辑笔记"
+          }
+        },
+        {
+          path: '/manageTemplates',
+          name: 'manageTemplates',
+          component: () => import('@/views/ManageTemplateView.vue'),
+          meta:{
+            title:"编辑笔记"
+          }
+        },
+        {
+          path: '/editAttribute',
+          name: 'editAttribute',
+          component: () => import('@/views/EditAttributeView.vue'),
+          meta:{
+            title:"编辑笔记"
+          }
+        },
+        {
+          path: '/manageAttributes',
+          name: 'manageAttributes',
+          component: () => import('@/views/ManageAttributesView.vue'),
+          meta:{
+            title:"编辑笔记"
+          }
+        }
+      ],
     },
-    {
-      path: '/editNote',
-      name: 'editNote',
-      component: () => import('@/views/EditNoteView.vue')
-    },
-    {
-      path: '/manageNotes',
-      name: 'manageNotes',
-      component: () => import('@/views/ManageNotesView.vue')
-    },
-    {
-      path: '/editTemplate',
-      name: 'editTemplate',
-      component: () => import('@/views/EditTemplateView.vue')
-    },
-    {
-      path: '/manageTemplates',
-      name: 'manageTemplates',
-      component: () => import('@/views/ManageTemplateView.vue')
-    },
-    {
-      path: '/editAttribute',
-      name: 'editAttribute',
-      component: () => import('@/views/EditAttributeView.vue')
-    },
-    {
-      path: '/manageAttributes',
-      name: 'manageAttributes',
-      component: () => import('@/views/ManageAttributesView.vue')
-    }
   ]
 })
 

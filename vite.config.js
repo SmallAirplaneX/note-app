@@ -1,15 +1,17 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
+import UnoCSS from 'unocss/vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver ,ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    UnoCSS(),
     AutoImport({
+      resolvers: [ElementPlusResolver()],
       imports: [
         'vue',
         {
@@ -24,7 +26,7 @@ export default defineConfig({
       ]
     }),
     Components({
-      resolvers: [NaiveUiResolver()]
+      resolvers: [NaiveUiResolver(),ElementPlusResolver()]
     })
   ],
   resolve: {

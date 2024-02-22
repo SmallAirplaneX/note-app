@@ -1,7 +1,3 @@
-<script setup>
-import { RouterView } from 'vue-router'
-</script>
-
 <template>
   <n-message-provider>
     <n-dialog-provider>
@@ -9,3 +5,9 @@ import { RouterView } from 'vue-router'
     </n-dialog-provider>
   </n-message-provider>
 </template>
+
+<script setup>
+import { RouterView } from 'vue-router'
+</script>
+
+

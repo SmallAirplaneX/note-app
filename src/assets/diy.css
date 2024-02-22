@@ -1,11 +1,77 @@
 .center{
-    position: absolute;
+    position: relative;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
 .center-x{
-    position: absolute;
+    position: relative;
     left: 50%;
     transform: translate(-50%,0%);
+}
+
+.flex-x{
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    flex-direction: row;
+}
+.full-y{
+    position: relative;
+    background-color: blueviolet;
+    top: 0;
+    height: 100%;
+    bottom: 0;
+}
+.full-x{
+    position: relative;
+    background-color: rgb(54, 135, 160);
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+.flex-x-around{
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content:space-around;
+}
+.flex-rx-yc{
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items:center;
+}
+/* x轴空间环绕方向y轴水平 */
+.flex-xsb-yc{
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content:space-between
+}
+/* 铺满父级容器 */
+.full{
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+/* x轴方向y轴水平 */
+.flex-x-yc{
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+}
+/* y轴方向 */
+.flex-y{
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items:stretch;
 }

@@ -1,11 +1,15 @@
+<template>
+
+  <n-data-table :columns="columns" :data="data" :pagination="pagination" :bordered="false" />
+
+</template>
+
+
 <script setup>
 import { h, ref } from "vue";
 import { NButton, useMessage } from "naive-ui";
 import { getAttributeList } from '@/http/api'
 import { onMounted } from 'vue'
-
-
-
 
 const createColumns = ({
   play
@@ -24,11 +28,15 @@ const createColumns = ({
       key: "type"
     },
     {
+      title: "时间",
+      key: "time"
+    },
+    {
       title: "解释",
       key: "explanation"
     },
     {
-      title: "Action",
+      title: "操作",
       key: "actions",
       render(row) {
         return h(
@@ -69,6 +77,3 @@ const columns = createColumns({
 const pagination = ref(false)
 
 </script>
-<template>
-  <n-data-table :columns="columns" :data="data" :pagination="pagination" :bordered="false" />
-</template>
