@@ -1,56 +1,34 @@
 <template>
-  <n-data-table :columns="columns" :data="data"  :bordered="false" />
+  <el-table :data="store.templates" @selection-change="handleSelectionChange" >
+      <el-table-column prop="id" label="ID" width="90" />
+      <el-table-column prop="name" label="模板名称" width="250" />
+      <el-table-column prop="time" label="创建时间" width="90"/>
+      <el-table-column prop="parent" label="父模板" />
+      <el-table-column fixed="right" label="操作" width="120">
+        <template #default>
+          <el-button link type="primary" size="small" @click="handleClick"
+            >删除</el-button
+          >
+          <el-button link type="primary" size="small">修改</el-button>
+        </template>
+      </el-table-column>
+  </el-table>
 </template>
 
 <script setup>
-import { h, ref } from "vue";
-import { NButton, useMessage } from "naive-ui";
-
-const createColumns = ({
-  play
-}) => {
-  return [
-    {
-      title: "No",
-      key: "no"
-    },
-    {
-      title: "属性名",
-      key: "name"
-    },
-    {
-      title: "类型",
-      key: "type"
-    },
-    {
-      title: "Action",
-      key: "actions",
-      render(row) {
-        return h(
-          NButton,
-          {
-            strong: true,
-            tertiary: true,
-            size: "small",
-            onClick: () => play(row)
-          },
-          { default: () => "Play" }
-        );
-      }
-    }
-  ];
-};
+import { useCounterStore } from '@/stores/counter'
+const store = useCounterStore()
 
 
-const data = [
-  { no: 3, name: "Wonderwall", type: "4:18" },
-  { no: 4, name: "Don't Look Back in Anger", type: "4:48" },
-  { no: 12, name: "Champagne Supernova", type: "7:27" }
-];
-
-const columns = createColumns({
-  play(row) {
-    message.info(`Play ${row.title}`);
+const handleSelectionChange = (selection)=>{
+    // 打印当前选中的行数据
+    selected.value = selection
   }
+const handleClick = () => {
+  message.info("删除")
+}
+
+onMounted(() => {
+  store.getTemplates()
 })
 </script>

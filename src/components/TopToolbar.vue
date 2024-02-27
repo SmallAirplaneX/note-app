@@ -1,6 +1,5 @@
 <template>
     <div class="top-grid full">
-
         <div class="top-left p-l-20px flex-x-yc full gap-5">
             <n-button text style="font-size: 1.2rem" @click="store.changeCollapse()">
                 <n-icon>
@@ -30,18 +29,14 @@
         </div>
         <div class="top-right p-r-20px">
             <div class="flex-rx-yc full gap-5">
-                <n-button text>
-                    <n-icon size="2rem">
-                        <SettingsOutline />
-                    </n-icon>
-                </n-button>
-                <n-button text>
-                    <n-icon size="2rem">
-                        <LogoGithub />
-                    </n-icon>
-                </n-button>
-                <n-avatar round :size=29 src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg" />
-
+                <div style="border-left: 1px solid rgba(0, 0, 0, 0.253);padding-left: 20px;">
+                    <n-button style="padding-top: 8px;" text>
+                        <n-icon size="1.5rem">
+                            <SettingsOutline />
+                        </n-icon>
+                    </n-button>
+                </div>
+                <el-avatar  :src="UserImage"/>
             </div>
         </div>
 
@@ -49,16 +44,18 @@
 </template>
 
 <script setup>
-import { Reload, LogoGithub, FlashOutline, SettingsOutline } from "@vicons/ionicons5";
-import { useRouter, useRoute } from 'vue-router'
+import { Reload, FlashOutline, SettingsOutline } from "@vicons/ionicons5";
 import { useCounterStore } from '@/stores/counter'
+import UserImage from '@/assets/user.jpg'
+import { useRoute } from 'vue-router'
+
 const store = useCounterStore()
 const route = useRoute()
-function reload(){
+
+const reload = () => {
     // router.push("/manageTemplates")
     // router.push(route.path)
 }
-
 
 </script>
 

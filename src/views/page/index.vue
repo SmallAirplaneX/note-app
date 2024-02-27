@@ -1,47 +1,27 @@
 <template>
 <div class="grid full">
-        <div class="logo box" style="text-align: center;font-size: 26px;font-weight: 900;">
+        <div class="logo">
             <span>你好!</span>
         </div>
-        <div class="top box">
+        <div class="top">
             <TopToolbar />
         </div>
-        <div class="left box">
+        <div class="left">
             <SideMenu />
         </div>
-        <div class="nav box p-l-2">
-          <div class="flex-x-yc h-full gap-2">
-            <!-- <span v-for="tag in store.tags">{{ tag.name }}+{{ tag.canClose }}</span> -->
-          </div>
+        <div class="nav">
+            <Tab />
         </div>
-        <div class="main box">
+        <div class="main">
             <RouterView />
         </div>
     </div>
 </template>
   
 <script setup>
-import SideMenu from '@/components/element-ui/SideMenu.vue';
+import SideMenu from '@/components/SideMenu.vue';
 import TopToolbar from '@/components/TopToolbar.vue'
-import { useCounterStore } from '@/stores/counter'
-const store = useCounterStore()
-import { useRouter, useRoute } from 'vue-router'
-const route = useRoute()
-watch(() => route.path, (newPath) => {
-    console.log(newPath)
-    var name = ''
-    route.matched.forEach(e=>{
-        name = e.meta.title
-    })
-    if (!store.tags.includes(newPath)) {
-    store.tags.push({
-      path:newPath,
-      name: name,
-      canClose:true,
-    });
-  }
-  console.log(store.tags)
-}, { immediate: true });
+import Tab from '@/components/Tab.vue'
 </script>
   
 <style scoped>

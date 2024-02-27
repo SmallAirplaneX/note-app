@@ -13,7 +13,7 @@
 
 <script setup>
 import DefineAttribute from '@/components/DefineAttribute.vue'
-import ListAttribute from '@/components/element-ui/ListAttribute.vue'
+import ListAttribute from '@/components/ListAttribute.vue'
 import { quireAttribute } from '@/http/api'
 import { useCounterStore } from '@/stores/counter'
 

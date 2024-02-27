@@ -7,37 +7,29 @@ const router = createRouter({
       name: 'home',
       component: () => import('@/views/page/index.vue'),
       meta:{
-        title:"管理"
+        title:"Home"
       },
       children: [
         {
-          path: '/editNote',
-          name: 'editNote',
-          component: () => import('@/views/EditNoteView.vue'),
+          path: '/notes',
+          name: 'Notes',
+          component: () => import('@/views/page/notes/index.vue'),
           meta:{
-            title:"编辑笔记"
+            title:"笔记管理"
           }
         },
         {
-          path: '/manageNotes',
-          name: 'manageNotes',
-          component: () => import('@/views/ManageNotesView.vue'),
-          meta:{
-            title:"主题管理"
-          }
-        },
-        {
-          path: '/manageTemplates',
-          name: 'manageTemplates',
-          component: () => import('@/views/ManageTemplateView.vue'),
+          path: '/templates',
+          name: 'Templates',
+          component: () => import('@/views/page/templates/index.vue'),
           meta:{
             title:"模板管理"
           }
         },
         {
-          path: '/manageAttributes',
-          name: 'manageAttributes',
-          component: () => import('@/views/ManageAttributesView.vue'),
+          path: '/attributes',
+          name: 'Attributes',
+          component: () => import('@/views/page/attributes/index.vue'),
           meta:{
             title:"属性管理"
           }

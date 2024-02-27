@@ -1,6 +1,5 @@
 <template>
-  {{ props.selection }}
-    <el-table :data="store.attributes" @selection-change="handleSelectionChange"  height="650">
+    <el-table :data="store.attributes" @selection-change="handleSelectionChange"  :height=props.height>
       <el-table-column v-if="props.selection == 'true'" type="selection" width="55" />
       <el-table-column prop="id" label="ID" width="90" />
       <el-table-column prop="name" label="属性名称" width="250" />
@@ -8,8 +7,11 @@
       <el-table-column prop="time" label="创建时间" width="90"/>
       <el-table-column prop="explanation" label="解释" />
       <el-table-column fixed="right" label="操作" width="120">
-        <template #default>
-          <el-button link type="primary" size="small" @click="handleClick"
+        <template v-if="props.selection == 'true'" #header>
+        <el-button @click="add()">添加</el-button>
+      </template>
+        <template #default="scope">
+          <el-button link type="primary" size="small" @click="handleClick(scope)"
             >删除</el-button
           >
           <el-button link type="primary" size="small">修改</el-button>
@@ -23,17 +25,26 @@
 
 
 <script setup>
-import { useMessage } from "naive-ui";
+import { deleteAttribute } from '@/http/api'
 import { useCounterStore } from '@/stores/counter'
-const props = defineProps(['selection'])
+import { TimerOutline } from '@vicons/ionicons5';
 const store = useCounterStore()
-const message= useMessage()
+import { ref } from "vue";
+const props = defineProps(['selection','height'])
+const selected = ref([])
+const add = () =>{
+  console.log(selected) 
+}
 const handleSelectionChange = (selection)=>{
     // 打印当前选中的行数据
-    console.log(selection);
+    selected.value = selection
   }
-const handleClick = () => {
-  message.info("删除")
+ const handleClick = (id) => {
+  
+  deleteAttribute({
+    id:id.row.id
+  })
+  setTimeout (store.getAttributes(),2000)
 }
 
 onMounted(() => {
