@@ -1,22 +1,24 @@
 <template>
-    <div class="main-grid full">
-        <div class="main-top">
-            <DefineTemplate />
-        </div>
-        <div class="main-con">
-            <ManageTemplate />
-        </div>
-    </div>
+      <Layout>
+      <template #nav>
+        <DefineTemplate />
+      </template>
+      <template #default>
+        <ListTemplate selection="false"/>
+      </template>
+    </Layout>
 </template>
   
 <script setup>
+import Layout from '@/views/page/layout/Manage.vue'
 import DefineTemplate from '@/components/DefineTemplate.vue';
-import ManageTemplate from '@/components/ManageTemplate.vue';
-
-
+import ListTemplate from '@/components/ListTemplate.vue';
+import { useCounterStore } from '@/stores/counter'
+const store = useCounterStore()
+const quirevar = ref('')
 </script>
   
-<style>
+<style scoped>
 .main-grid {
     display: grid;
     grid-template-columns: 1fr;

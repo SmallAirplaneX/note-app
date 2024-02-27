@@ -2,7 +2,7 @@
     <div class="top-grid full">
 
         <div class="top-left p-l-20px flex-x-yc full gap-5">
-            <n-button text style="font-size: 1.2rem">
+            <n-button text style="font-size: 1.2rem" @click="store.changeCollapse()">
                 <n-icon>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 1024 1024">
@@ -12,14 +12,13 @@
                     </svg>
                 </n-icon>
             </n-button>
-            <n-button text style="font-size: 1.2rem">
+            <n-button text style="font-size: 1.2rem" @Click="reload()">
                 <n-icon>
                     <Reload />
                 </n-icon>
             </n-button>
             <n-breadcrumb style="font-size: 16px">
-                <n-breadcrumb-item>属性</n-breadcrumb-item>
-                <n-breadcrumb-item>创建属性</n-breadcrumb-item>
+                    <n-breadcrumb-item v-for="(item,index) in route.matched"  :href="item.path">{{item.meta.title}}</n-breadcrumb-item>
             </n-breadcrumb>
         </div>
         <div class="top-con flex-x-yc full">
@@ -41,7 +40,7 @@
                         <LogoGithub />
                     </n-icon>
                 </n-button>
-                <n-avatar round :size="29" src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg" />
+                <n-avatar round :size=29 src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg" />
 
             </div>
         </div>
@@ -51,6 +50,16 @@
 
 <script setup>
 import { Reload, LogoGithub, FlashOutline, SettingsOutline } from "@vicons/ionicons5";
+import { useRouter, useRoute } from 'vue-router'
+import { useCounterStore } from '@/stores/counter'
+const store = useCounterStore()
+const route = useRoute()
+function reload(){
+    // router.push("/manageTemplates")
+    // router.push(route.path)
+}
+
+
 </script>
 
 

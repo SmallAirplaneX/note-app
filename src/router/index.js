@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/page/home/index.vue'),
+      component: () => import('@/views/page/index.vue'),
+      meta:{
+        title:"管理"
+      },
       children: [
         {
           path: '/editNote',
@@ -21,15 +23,7 @@ const router = createRouter({
           name: 'manageNotes',
           component: () => import('@/views/ManageNotesView.vue'),
           meta:{
-            title:"编辑笔记"
-          }
-        },
-        {
-          path: '/editTemplate',
-          name: 'editTemplate',
-          component: () => import('@/views/EditTemplateView.vue'),
-          meta:{
-            title:"编辑笔记"
+            title:"主题管理"
           }
         },
         {
@@ -37,15 +31,7 @@ const router = createRouter({
           name: 'manageTemplates',
           component: () => import('@/views/ManageTemplateView.vue'),
           meta:{
-            title:"编辑笔记"
-          }
-        },
-        {
-          path: '/editAttribute',
-          name: 'editAttribute',
-          component: () => import('@/views/EditAttributeView.vue'),
-          meta:{
-            title:"编辑笔记"
+            title:"模板管理"
           }
         },
         {
@@ -53,12 +39,14 @@ const router = createRouter({
           name: 'manageAttributes',
           component: () => import('@/views/ManageAttributesView.vue'),
           meta:{
-            title:"编辑笔记"
+            title:"属性管理"
           }
         }
       ],
     },
   ]
 })
+
+
 
 export default router

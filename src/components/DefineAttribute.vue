@@ -37,6 +37,9 @@ import { ref } from 'vue';
 import { createAttribute } from '@/http/api'
 import { useMessage } from 'naive-ui'
 
+import { useCounterStore } from '@/stores/counter'
+
+const store = useCounterStore()
 const showModal = ref(false) //按钮--加载状态
 const message = useMessage()//消息提示
 const loadingRef = ref(false)
@@ -44,7 +47,7 @@ const formRef = ref(null)
 
 const data = ref({
     name: '',
-    type: '',
+    type: 'default',
     explanation: '',
 })
 //改动--从服务器获取数据
@@ -95,18 +98,20 @@ const submit = () => {
              return;
         }  
 
-        loadingRef.value = true;                    //验证通过,按钮设置为加载状态
+        loadingRef.value = true;    //验证通过,按钮设置为加载状态             
         createAttribute(data.value)                 //发起请求
         .then(
             res => {                                    
                 loadingRef.value = false            //操作成功，取消按钮加载状态
                 message.success("属性创建成功!")
                 showModal.value = false
+                store.getAttributes()
             }
         )
         .catch(
             error => {
                 loadingRef.value = false
+                
                 if (error.response) {
                     //请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
                     //错误提示

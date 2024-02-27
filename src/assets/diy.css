@@ -5,9 +5,7 @@
     transform: translate(-50%, -50%);
 }
 .center-x{
-    position: relative;
-    left: 50%;
-    transform: translate(-50%,0%);
+    margin: auto 0;
 }
 
 .flex-x{

@@ -11,11 +11,7 @@
         </div>
         <div class="nav box p-l-2">
           <div class="flex-x-yc h-full gap-2">
-            <el-tag size="large" style="font-size: 16px;">Default</el-tag>
-            <el-tag size="large" style="font-size: 16px;">Default</el-tag>
-            <el-tag size="large" style="font-size: 16px;">Default</el-tag>
-            <el-tag size="large" style="font-size: 16px;">Default</el-tag>
-            <el-tag size="large" style="font-size: 16px;">Default</el-tag>
+            <!-- <span v-for="tag in store.tags">{{ tag.name }}+{{ tag.canClose }}</span> -->
           </div>
         </div>
         <div class="main box">
@@ -25,8 +21,27 @@
 </template>
   
 <script setup>
-import SideMenu from '@/components/SideMenu.vue';
+import SideMenu from '@/components/element-ui/SideMenu.vue';
 import TopToolbar from '@/components/TopToolbar.vue'
+import { useCounterStore } from '@/stores/counter'
+const store = useCounterStore()
+import { useRouter, useRoute } from 'vue-router'
+const route = useRoute()
+watch(() => route.path, (newPath) => {
+    console.log(newPath)
+    var name = ''
+    route.matched.forEach(e=>{
+        name = e.meta.title
+    })
+    if (!store.tags.includes(newPath)) {
+    store.tags.push({
+      path:newPath,
+      name: name,
+      canClose:true,
+    });
+  }
+  console.log(store.tags)
+}, { immediate: true });
 </script>
   
 <style scoped>

@@ -1,18 +1,24 @@
 <template>
+
   <n-data-table :columns="columns" :data="data" :pagination="pagination" :bordered="false" />
+
 </template>
+
 
 <script setup>
 import { h, ref } from "vue";
 import { NButton, useMessage } from "naive-ui";
+import { getAttributeList } from '@/http/api'
+import { onMounted } from 'vue'
 
+const message = useMessage()
 const createColumns = ({
   play
 }) => {
   return [
     {
       title: "No",
-      key: "no"
+      key: "id"
     },
     {
       title: "属性名",
@@ -23,18 +29,26 @@ const createColumns = ({
       key: "type"
     },
     {
-      title: "Action",
+      title: "时间",
+      key: "time"
+    },
+    {
+      title: "解释",
+      key: "explanation"
+    },
+    {
+      title: "操作",
       key: "actions",
-      render(row) {
+      render(id) {
         return h(
           NButton,
           {
             strong: true,
             tertiary: true,
             size: "small",
-            onClick: () => play(row)
+            onClick: () => play(id)
           },
-          { default: () => "Play" }
+          { default: () => "删除" }
         );
       }
     }
@@ -42,15 +56,25 @@ const createColumns = ({
 };
 
 
-const data = [
-  { no: 3, name: "Wonderwall", type: "4:18" },
-  { no: 4, name: "Don't Look Back in Anger", type: "4:48" },
-  { no: 12, name: "Champagne Supernova", type: "7:27" }
-];
+
+const data = ref([])
+
+
+
+
+onMounted(() => {
+  getAttributeList().then(res => {
+      data.value = data.value.concat(res.data)
+  
+  })
+})
 
 const columns = createColumns({
   play(row) {
     message.info(`Play ${row.title}`);
   }
 })
+
+const pagination = ref(false)
+
 </script>

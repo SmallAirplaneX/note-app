@@ -2,13 +2,9 @@
 import axios from 'axios';
 import { useDialog, useMessage } from 'naive-ui'
 
-const message = useMessage()
+// const message = useMessage()
 
-// 假设你的API地址是 http://your-domain/api/addAbstractEntry
 const baseURL = "http://localhost:4000/api";
-
-// 假设entry参数是一个包含中文的字符串
-const entry = "你好，世界！";
 
 // 使用 Axios 发送POST请求
 const serviceAxios = axios.create({
