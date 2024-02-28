@@ -1,28 +1,28 @@
 # note-app
 
-This template should help get you started developing with Vue 3 in Vite.
+笔记构建.
 
-## Recommended IDE Setup
+## 开发环境
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Customize configuration
+## 依赖
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+vue3 + element-ui plus + pinai + vue-router
 
-## Project Setup
+## 初始化
 
 ```sh
 pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+### 开发
 
 ```sh
 pnpm dev
 ```
 
-### Compile and Minify for Production
+### 构建
 
 ```sh
 pnpm build
