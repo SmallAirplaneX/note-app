@@ -6,10 +6,17 @@ export const useCounterStore = defineStore('counter', {
     return {
       // 所有这些属性都将自动推断出它们的类型
       attributes: [],
+      attributeForm:{
+        name: '',
+        type: 'default',
+        explanation: '',
+      },
+      attributeFormV : false,
       templates: [],
       tags:[],
       isCollapse: false,
       menus: [],
+      model: false,
     }
   },
   getter:{
@@ -42,6 +49,12 @@ export const useCounterStore = defineStore('counter', {
       if (!tags.includes(path)) {
         tags.push(path);
       }
+    },
+    clearAttributeForm(){
+      console.log('------');
+      this.attributeForm.name = ''
+      this.attributeForm.type = 'defalut'
+      this.attributeForm.explanation = ''
     }
   },
 })

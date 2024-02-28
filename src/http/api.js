@@ -36,6 +36,10 @@ export function quireAttribute(data) {
    return instance.post('/attribute/quire', data)
 }
 
+export function updateAttribute(data) {
+   return instance.post('/attribute/update', data)
+}
+
 export function deleteAttribute( data ) {
    return instance.post('/attribute/delete',data)
 }

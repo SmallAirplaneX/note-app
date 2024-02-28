@@ -6,9 +6,7 @@
       <el-table-column prop="parent" label="父模板" />
       <el-table-column fixed="right" label="操作" width="120">
         <template #default>
-          <el-button link type="primary" size="small" @click="handleClick"
-            >删除</el-button
-          >
+          <el-button link type="primary" size="small" @click="handleClick">删除</el-button>
           <el-button link type="primary" size="small">修改</el-button>
         </template>
       </el-table-column>

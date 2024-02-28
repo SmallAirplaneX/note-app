@@ -13,12 +13,15 @@
       <el-form-item label="继承选项">
         <el-input>123</el-input>
       </el-form-item>
+      <el-form-item>
+        <ListAttribute selection="true"  height="300px"/>
+      </el-form-item>
+      <el-form-item>
+                <el-button type="primary" >创建</el-button>
+                <el-button >取消</el-button>
+      </el-form-item>
     </el-form>
-    <ListAttribute selection="true"  height="400px"/>
-
-
-
-
+    
   </el-dialog>
 </template>
 

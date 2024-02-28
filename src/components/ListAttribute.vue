@@ -11,10 +11,9 @@
         <el-button @click="add()">添加</el-button>
       </template>
         <template #default="scope">
-          <el-button link type="primary" size="small" @click="handleClick(scope)"
-            >删除</el-button
+          <el-button link type="primary" size="small" @click="handleDelete(scope)">删除</el-button
           >
-          <el-button link type="primary" size="small">修改</el-button>
+          <el-button link type="primary" size="small" @click="handleUpdate(scope)">修改</el-button>
         </template>
       </el-table-column>
   </el-table>
@@ -27,25 +26,36 @@
 <script setup>
 import { deleteAttribute } from '@/http/api'
 import { useCounterStore } from '@/stores/counter'
-import { TimerOutline } from '@vicons/ionicons5';
 const store = useCounterStore()
 import { ref } from "vue";
 const props = defineProps(['selection','height'])
 const selected = ref([])
 const add = () =>{
-  console.log(selected) 
+  console.log(selected.value) 
+
+
+
+  
 }
 const handleSelectionChange = (selection)=>{
     // 打印当前选中的行数据
     selected.value = selection
   }
- const handleClick = (id) => {
+ const handleDelete = (e) => {
   
   deleteAttribute({
-    id:id.row.id
+    id:e.row.id
   })
   setTimeout (store.getAttributes(),2000)
 }
+const handleUpdate = (e=>{
+  store.attributeForm = e.row
+  store.model=true
+  store.attributeFormV = true
+
+  // store.attributeUpdate(e.row)
+  // store.getAttributes()
+})
 
 onMounted(() => {
   store.getAttributes()
