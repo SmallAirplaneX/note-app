@@ -1,7 +1,7 @@
 <template>
 <div class="grid full">
         <div class="logo">
-            <span>你好!</span>
+            <span>笔记构建</span>
         </div>
         <div class="top">
             <TopToolbar />
@@ -13,7 +13,7 @@
             <Tab />
         </div>
         <div class="main">
-            <RouterView />
+            <slot />
         </div>
     </div>
 </template>

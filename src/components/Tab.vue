@@ -1,7 +1,7 @@
 <template>
     <div class="p-l-2 flex-x-yc h-full gap-2">
         <el-tag v-for="(tag, index) in store.tags" :key="index" :closable="tag.canClose" :disable-transitions="false"
-            @close="handleClose(tag)" @click="handleclick(tag)" size="large">
+                @close="handleClose(tag)" @click="handleClick(tag)" size="large">
             <template #default>
                 <el-button :link="true" color="#9CEAFF">{{ tag.name }}</el-button>
             </template>
@@ -11,10 +11,10 @@
 
 
 <script setup>
-import { useRouter, useRoute } from 'vue-router'
-import { useCounterStore } from '@/stores/counter'
+import { useRouter, useRoute , } from 'vue-router'
+import { useAppStore } from '@/stores'
 
-const store = useCounterStore()
+const store = useAppStore()
 const route = useRoute()
 const router = useRouter()
 
@@ -26,19 +26,20 @@ watch(
             name = e.meta.title
         })
 
-        if (!store.tags.find(item => item.path == newPath)) {
+        if (!store.tags.find(item => item.path === newPath) && newPath !== '/') {
             store.tags.push({
                 path: newPath,
                 name: name,
                 canClose: true,
             });
         }
-    }, { immediate: true });
+    },
+    { immediate: true });
 
 const handleClose = (tag) => {
     store.tags = store.tags.filter(item => item.path != tag.path)
 }
-const handleclick = (tag) => {
+const handleClick = (tag) => {
     router.push(tag.path)
 }
 </script>

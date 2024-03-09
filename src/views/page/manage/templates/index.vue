@@ -10,9 +10,9 @@
 </template>
 
 <script setup>
-import Layout from '@/views/page/layout/Manage.vue'
-import DefineTemplate from '@/components/DefineTemplate.vue';
-import ListTemplate from '@/components/ListTemplate.vue';
+import Layout from '@/views/layout/manager/index.vue'
+import DefineTemplate from '@/components/AbstractForm.vue';
+import ListTemplate from '@/components/AbstractTable.vue';
 </script>
 
 <style scoped>

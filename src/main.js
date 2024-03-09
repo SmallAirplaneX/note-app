@@ -1,18 +1,16 @@
 import './assets/main.css'
 import 'virtual:uno.css'
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
 import App from './App.vue'
-import router from './router'
+import { createApp } from 'vue'
+import { setupStore } from '@/stores'
+import { setupRouter } from '@/router'
 
-function start (){
+async function bootstrap (){
     const app = createApp(App)
-
-    app.use(createPinia())
-    app.use(router)
-
+    setupStore(app)
+    await setupRouter(app)
     app.mount('#app')
 } 
 
-start()
+bootstrap()

@@ -45,11 +45,11 @@
 
 <script setup>
 import { Reload, FlashOutline, SettingsOutline } from "@vicons/ionicons5";
-import { useCounterStore } from '@/stores/counter'
+import { useAppStore } from '@/stores'
 import UserImage from '@/assets/user.jpg'
 import { useRoute } from 'vue-router'
 
-const store = useCounterStore()
+const store = useAppStore()
 const route = useRoute()
 
 const reload = () => {

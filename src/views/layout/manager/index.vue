@@ -2,8 +2,8 @@
     <div class="main-grid full">
         <div class="main-top flex-rx-yc p-r-20px gap-3">
           <slot name="nav"></slot>
-          <n-button @Click="quire()">查询</n-button>
-          <el-input v-model="quirevar" style="width: 300px;">关键字</el-input>
+          <!-- <n-button @Click="quire()">查询</n-button>
+          <el-input v-model="quirevar" style="width: 300px;">关键字</el-input> -->
         </div>
         <div class="main-con">
             <slot></slot>
@@ -12,22 +12,22 @@
 </template>
 
 <script setup>
-import { quireAttribute } from '@/http/api'
-import { useCounterStore } from '@/stores/counter'
+import api from '@/api/index.js'
+// import { useAppStore } from '@/stores'
 
-const store = useCounterStore()
-const quirevar = ref('')
+// const store = useAppStore()
+// const quirevar = ref('')
 
-function quire(){
-  if(!quirevar.value){
-    return
-  }
-  quireAttribute( {
-    "name" : quirevar.value
-  } ).then(res=>{
-    store.attributes = res.data
-  })
-}
+// function quire(){
+//   if(!quirevar.value){
+//     return
+//   }
+//   api.quireAttribute( {
+//     "name" : quirevar.value
+//   } ).then(res=>{
+//     store.attributes = res.data
+//   })
+// }
 </script>
 
 <style>
