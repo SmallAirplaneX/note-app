@@ -4,7 +4,7 @@
         <AttributeForm/>
       </template>
       <template #default>
-        <AttributeTable height="750px"/>
+        <AttributeTable height="666px"/>
       </template>
     </Layout>
 </template>

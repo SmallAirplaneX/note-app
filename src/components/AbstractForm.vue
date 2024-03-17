@@ -1,5 +1,5 @@
 <template>
-  <el-button plain @click="store.openForm()">
+  <el-button plain @click="store.openForm('创建')">
     新建
   </el-button>
   <el-dialog v-model="store.state" title="创建模板" width="900" :before-close="() => store.closeForm()">
@@ -14,12 +14,13 @@
       </el-form-item>
       <el-form-item label="继承选项">
         <el-input v-model="store.form.parent"/>
+
       </el-form-item>
       <el-form-item>
-        <AttributeTable height="300px" />
+        <AttributeTable height="450px" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @Click="store.submit()">创建</el-button>
+        <el-button type="primary" @Click="store.submit()">{{ store.model }}</el-button>
         <el-button @click="store.closeForm()">取消</el-button>
       </el-form-item>
     </el-form>

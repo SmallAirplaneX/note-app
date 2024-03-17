@@ -5,6 +5,7 @@ export const useAttributeStore = defineStore("attribute", ()=>{
     const attributes = ref([])
     const state = ref(false)
     const model =  ref('创建')
+    const page = ref()
     const selected = ref([])
     const form =ref({
         name: "",
@@ -26,7 +27,7 @@ export const useAttributeStore = defineStore("attribute", ()=>{
         this.state = false
     }
     function flash() {
-        api.getAttributes().then((res) => {
+        api.getAttributes(this.page).then((res) => {
             this.attributes = res.data;
         });
     }
@@ -64,5 +65,5 @@ export const useAttributeStore = defineStore("attribute", ()=>{
         this.form = e.row;
         this.openForm('更新')
     }
-    return { attributes,form,state,model,selected,openForm,closeForm,flash,creat,submit,handleDelete,handleUpdata,clean}
+    return { attributes,form,state,model,selected,openForm,closeForm,flash,creat,submit,handleDelete,handleUpdata,clean,page}
 });

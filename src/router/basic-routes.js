@@ -41,5 +41,13 @@ export const basicRoutes = [
                 },
             },
         ],
-    }
+    },
+    {
+        path: "/createNote",
+        name: "createNote",
+        component: () => import("@/views/page/note/index.vue"),
+        meta: {
+            title: "创建笔记",
+        },
+    },
 ];

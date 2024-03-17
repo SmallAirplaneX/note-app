@@ -1,3 +1,5 @@
 export * from './attribute.js'
 export * from './template.js'
 export * from './app.js'
+export * from './menu.js'
+export * from './note.js'

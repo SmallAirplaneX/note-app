@@ -1,18 +1,18 @@
 <template>
     <Layout>
     <template #nav>
-      <DefineTemplate />
+      <AbstractForm />
     </template>
     <template #default>
-      <ListTemplate/>
+      <AbstractTable/>
     </template>
   </Layout>
 </template>
 
 <script setup>
 import Layout from '@/views/layout/manager/index.vue'
-import DefineTemplate from '@/components/AbstractForm.vue';
-import ListTemplate from '@/components/AbstractTable.vue';
+import AbstractForm from '@/components/AbstractForm.vue';
+import AbstractTable from '@/components/AbstractTable.vue';
 </script>
 
 <style scoped>

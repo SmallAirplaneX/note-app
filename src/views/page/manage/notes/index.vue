@@ -1,9 +1,13 @@
 <template>
-    <DefineTheme />
+    <FigurativeFrom />
+    <FigurativeTable />
 </template>
 
 <script setup>
-import DefineTheme from "@/components/FigurativeFrom.vue";
+import FigurativeFrom from "@/components/FigurativeFrom.vue";
+import FigurativeTable from "@/components/FigurativeTablle.vue";
+
+
 </script>
 
 
