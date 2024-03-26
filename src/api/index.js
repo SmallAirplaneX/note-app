@@ -1,39 +1,29 @@
 import { request } from "@/utils";
 
 export default {
-  // 获取属性列表
-  getAttributes: (page) => request.get("/attribute/list"+"/"+page),
-  // 创建属性
-  createAttribute: (attribute) => request.post("/attribute/create", attribute),
-  // 查询指定属性
-  quireAttribute: (attribute) => request.post("/attribute/quire", attribute),
-  // 更新指定属性
-  updateAttribute: (attribute) => request.post("/attribute/update", attribute),
-  // 删除指定属性
-  deleteAttribute: (id) => request.post("/attribute/delete", id),
-
-
-  //获取模板列表
-  getTemplates: () => request.get("/template/list"),
-  // 创建模板
-  createTemplate:(template) => request.post('/template/create' ,template),
-  // 删除模板
-  deleteTemplate:(id) => request.post('/template/delete',id),
-  upDataTemplate:(template) => request.post('/template/updata',template),
-
-
-
-  // 通过模板id 获取 改模板属性
-  getAttributesById:(id)=> request.get("template/getAttributesById"+"/"+id),
-
-
-
-  //创建笔记
-  createNote:(figurative) =>request.post("figurative/create",figurative),
-  //查询笔记
-  getNotes:(page) =>request.get("figurative/list/"+page),
-  //删除笔记
-  deleteNote:(id) =>request.post("figurative/delete",id),
-  //更新笔记
-  upDataNote:(figurative) =>request.post("figurative/updata",figurative),
+  concept : {
+    list: (page) => request.get("/concept/list/"+page),
+    delete: (id) => request.post("/concept/delete", id),
+    create: (concept) => request.post("/concept/create", concept),
+    updata: (concept) => request.post("/concept/updata", concept),
+  },
+  template : {
+    list: (page) => request.get("/template/list/"+page),
+    create:(template) => request.post('/template/create',template),
+    delete:(template) => request.post('/template/delete',template),
+    updata:(template) => request.post('/template/updata',template),
+    concepts:(id) => request.get('/template/getConcepts/'+id),
+  },
+  object : {
+    list: (page) => request.get("/object/list/"+page),
+    getTemplate: (id) =>request.get('/object/getTemplateById/'+id),
+    getInfById :(id) =>request.get("/object/getInfById/"+id),
+    create:(object) => request.post('/object/create',object),
+    delete:(object) => request.post('/object/delete',object),
+    updata:(object) => request.post('/object/updata',object),
+  },
+  user : {
+    login:(user) => request.post('/user/login',user),
+    register:(user) => request.post('/user/register',user),
+  },
 };

@@ -6,6 +6,7 @@
 }
 .center-x{
     margin: auto 0;
+    text-align: center;
 }
 
 .flex-x{
@@ -47,6 +48,13 @@
     flex-direction: row;
     align-items:center;
     justify-content:space-between
+}
+.flex-xl-yc{
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content:right;
 }
 /* 铺满父级容器 */
 .full{

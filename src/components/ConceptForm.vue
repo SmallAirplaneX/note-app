@@ -3,7 +3,7 @@
         新建
     </el-button>
     <el-dialog v-model="store.state" title="创建属性" width="500" label-position='left' >
-        <el-form :model="store.form" label-width="200px">
+        <el-form :model="store.form" label-width="90px">
             <el-form-item label="属性名称">
                 <el-input v-model="store.form.name" />
             </el-form-item>
@@ -28,3 +28,7 @@
 import { useAttributeStore } from '@/stores'
 const store = useAttributeStore()
 </script>
+
+<style scoped>
+
+</style>

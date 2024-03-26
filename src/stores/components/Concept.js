@@ -1,8 +1,9 @@
 import {defineStore} from "pinia";
+import { ref } from 'vue'
 import api from "@/api";
 
 export const useAttributeStore = defineStore("attribute", ()=>{
-    const attributes = ref([])
+    const concepts = ref([])
     const state = ref(false)
     const model =  ref('创建')
     const page = ref()
@@ -27,8 +28,8 @@ export const useAttributeStore = defineStore("attribute", ()=>{
         this.state = false
     }
     function flash() {
-        api.getAttributes(this.page).then((res) => {
-            this.attributes = res.data;
+        api.concept.list(this.page).then((res) => {
+            this.concepts = res.data.data
         });
     }
     function creat() {
@@ -38,14 +39,14 @@ export const useAttributeStore = defineStore("attribute", ()=>{
     function submit() {
         if (this.model === '更新'){
             console.log(this.form)
-            api.updateAttribute(this.form).then(()=>{
+            api.concept.updata(this.form).then(()=>{
                 this.closeForm()
                 this.flash()
             })
             return
         }
 
-        api.createAttribute(this.form).then((res) => {
+        api.concept.create(this.form).then((res) => {
             this.closeForm()
             this.flash()
             this.form = {
@@ -56,7 +57,7 @@ export const useAttributeStore = defineStore("attribute", ()=>{
         });
     }
     function handleDelete(e) {
-        api.deleteAttribute({
+        api.concept.delete({
             id: e.row.id,
         }).then(r => this.flash())
 
@@ -65,5 +66,5 @@ export const useAttributeStore = defineStore("attribute", ()=>{
         this.form = e.row;
         this.openForm('更新')
     }
-    return { attributes,form,state,model,selected,openForm,closeForm,flash,creat,submit,handleDelete,handleUpdata,clean,page}
+    return { concepts,form,state,model,selected,openForm,closeForm,flash,creat,submit,handleDelete,handleUpdata,clean,page}
 });

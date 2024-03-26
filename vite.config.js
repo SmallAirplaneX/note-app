@@ -13,15 +13,7 @@ export default defineConfig({
     AutoImport({
       resolvers: [ElementPlusResolver()],
       imports: [
-        'vue',
-        {
-          'naive-ui': [
-            'useDialog',
-            'useMessage',
-            'useNotification',
-            'useLoadingBar'
-          ]
-        },
+        'vue'
         
       ]
     }),
@@ -36,12 +28,12 @@ export default defineConfig({
   },
   server:{
     port: 4000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        rewrite: (path) => path
-      }
-    }
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:8080',
+    //     changeOrigin: true,
+    //     rewrite: (path) => path
+    //   }
+    // }
  }
 })

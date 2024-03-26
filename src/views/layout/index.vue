@@ -13,7 +13,7 @@
             <Tab />
         </div>
         <div class="main">
-            <slot />
+            <RouterView />
         </div>
     </div>
 </template>
@@ -22,6 +22,7 @@
 import SideMenu from '@/components/SideMenu.vue';
 import TopToolbar from '@/components/TopToolbar.vue'
 import Tab from '@/components/Tab.vue'
+import {RouterView} from "vue-router";
 </script>
   
 <style scoped>

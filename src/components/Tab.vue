@@ -13,7 +13,7 @@
 <script setup>
 import { useRouter, useRoute , } from 'vue-router'
 import { useAppStore } from '@/stores'
-
+import { ref,watch } from 'vue'
 const store = useAppStore()
 const route = useRoute()
 const router = useRouter()

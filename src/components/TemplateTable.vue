@@ -1,10 +1,11 @@
 <template>
-  <el-table :data="store.templates" >
+  <el-table :data="store.list" >
 
-      <el-table-column type="index" width="50" />
+      <el-table-column type="index" label="序号" width="60" />
       <el-table-column prop="name" label="模板名称" width="250" />
+      <el-table-column prop="id" label="索引" />
       <el-table-column prop="attributes" label="拥有属性" ><el-button>点我查看</el-button></el-table-column>
-      <el-table-column prop="parent" label="父模板" />
+      <el-table-column prop="parentId" label="父模板" />
       <el-table-column fixed="right" label="操作" width="150">
         <template #default="scope">
           <el-button type="danger" size="small" @click="store.handleDelete(scope)">删除</el-button>

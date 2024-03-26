@@ -11,8 +11,8 @@
 
 <script setup>
 import Layout from '@/views/layout/manager/index.vue'
-import AbstractForm from '@/components/AbstractForm.vue';
-import AbstractTable from '@/components/AbstractTable.vue';
+import AbstractForm from '@/components/TemplateForm.vue';
+import AbstractTable from '@/components/TemplateTable.vue';
 </script>
 
 <style scoped>
