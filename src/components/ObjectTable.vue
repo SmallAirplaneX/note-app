@@ -5,6 +5,7 @@
     <el-table-column type="index" label="序号" width="60" />
     <el-table-column prop="name" label="笔记名称" width="250" />
     <el-table-column prop="id" label="索引" />
+    <el-table-column prop="templateId" label="模板索引" />
     <el-table-column fixed="right" label="操作" width="150">
       <template #default="scope">
                 <el-button type="danger" size="small" @click="store.handleDelete(scope)">删除</el-button>

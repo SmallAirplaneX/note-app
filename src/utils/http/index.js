@@ -12,7 +12,8 @@ request.interceptors.response.use(
     (res)=>{
         //如果请求方式是get，则返回数据为res.data，否则返回res.data.data
         if (res.config.method === 'post') {
-            let type = '';
+            let type = 'error';
+            console.log(res.data.code % 10)
             //res.data.code各位为0、1、2、3时，type依次分别为error、success、warning、info
             switch (res.data.code % 10) {
                 case 0:

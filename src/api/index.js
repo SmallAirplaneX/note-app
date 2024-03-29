@@ -16,7 +16,6 @@ export default {
   },
   object : {
     list: (page) => request.get("/object/list/"+page),
-    getTemplate: (id) =>request.get('/object/getTemplateById/'+id),
     getInfById :(id) =>request.get("/object/getInfById/"+id),
     create:(object) => request.post('/object/create',object),
     delete:(object) => request.post('/object/delete',object),

@@ -6,7 +6,7 @@
     </el-form-item>
     <el-form-item label="模板选择">
       <el-select
-          v-model="store.form.myobject.template_id"
+          v-model="store.form.myobject.templateId"
           filterable
           placeholder="选择模板"
           style="width: 240px"
@@ -14,7 +14,7 @@
 
       >
         <el-option
-            v-for="item in store2.options"
+            v-for="item in store.options"
             :key="item.id"
             :label="item.name"
             :value="item.id"
@@ -22,10 +22,10 @@
       </el-select>
 
     </el-form-item>
-    <template v-for="concept in store.concepts">
-      <el-form-item  :label=concept.name>
+    <template v-for="information in store.form.information">
+      <el-form-item  :label=information.name>
         <el-input
-            v-model="concept.text"
+            v-model="information.text"
             style="width: 500px"
             :autosize="{ minRows: 2, maxRows: 4 }"
             type="textarea"
@@ -44,12 +44,10 @@
 import { useObjectStore } from '@/stores'
 import {useTemplateStore} from '@/stores'
 
-const store2 = useTemplateStore()
 const store = useObjectStore()
 
 
 onMounted(() => {
   store.flash()
-  store2.flash()
 })
 </script>
