@@ -1,14 +1,18 @@
 <template>
-
-  <el-tabs style="padding: 10px" v-model="store.activeName" class="demo-tabs" @tab-click="handleClick">
-    <el-tab-pane label="编辑" name="first"><ObjectFrom /></el-tab-pane>
-    <el-tab-pane label="列表" name="second"><ObjectTable /></el-tab-pane>
-  </el-tabs>
+  <Layout>
+    <template #nav>
+      <ObjectFrom />
+    </template>
+    <template #default>
+      <ObjectTable />
+    </template>
+  </Layout>
 
 
 </template>
 
 <script setup>
+import Layout from '@/views/layout/manager/index.vue'
 import ObjectFrom from "@/components/ObjectFrom.vue";
 import ObjectTable from "@/components/ObjectTable.vue";
 import { useObjectStore } from "@/stores/index.js";

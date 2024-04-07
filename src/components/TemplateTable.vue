@@ -4,7 +4,18 @@
       <el-table-column type="index" label="序号" width="60" />
       <el-table-column prop="name" label="模板名称" width="250" />
       <el-table-column prop="id" label="索引" />
-      <el-table-column prop="attributes" label="拥有属性" ><el-button>点我查看</el-button></el-table-column>
+<!--      <el-table-column prop="attributes" label="拥有属性" >-->
+<!--        <template #default="scope">-->
+<!--          //检查scope.row下是否包含属性va-->
+<!--                  <el-space v-if="scope.row" wrap>-->
+<!--                    <el-tag v-for="item in store.list[0].attributes" :key="item.id" type="success" size="small">{{ item.name }}</el-tag>-->
+<!--                  </el-space>-->
+<!--                  <el-button v-else @click="scope.row.v = true">点我查看</el-button>-->
+<!--        </template>-->
+
+
+
+<!--      </el-table-column>-->
       <el-table-column prop="parentId" label="父模板" />
       <el-table-column fixed="right" label="操作" width="150">
         <template #default="scope">

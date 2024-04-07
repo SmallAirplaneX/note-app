@@ -2,10 +2,7 @@ export const basicRoutes = [
     {
         path: "/",
         name: "",
-        component: () => import("@/views/page/home/index.vue"),
-        meta: {
-            title: "无状态",
-        }
+        component: () => import("@/views/layout/index.vue"),
     },
     {
         path: "/home",
@@ -60,7 +57,15 @@ export const basicRoutes = [
                 name: "Note",
                 component: () => import("@/views/page/note/index.vue"),
                 meta: {
-                    title: "创建笔记",
+                    title: "笔记管理",
+                },
+            },
+            {
+                path: "topic",
+                name: "Topic",
+                component: () => import("@/views/page/manage/topic/index.vue"),
+                meta: {
+                    title: "主题管理",
                 },
             },
         ],

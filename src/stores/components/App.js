@@ -12,5 +12,6 @@ export const useAppStore = defineStore("app", ()=>{
   const router = useRouter()
   const route = useRoute()
 
+
   return { tags,menus,isCollapse }
 });

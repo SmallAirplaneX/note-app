@@ -15,7 +15,6 @@
           {{ concept.name }}
         </el-tag>
       </el-form-item>
-      {{store.form.template}}
       <el-form-item label="继承选项">
         <el-select
             v-model="store.form.template.parentId"

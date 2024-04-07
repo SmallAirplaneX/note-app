@@ -25,4 +25,10 @@ export default {
     login:(user) => request.post('/user/login',user),
     register:(user) => request.post('/user/register',user),
   },
+  topic : {
+    list: (page) => request.get("/topic/list/"+page),
+    create:(topic) => request.post('/topic/create',topic),
+    delete:(topic) => request.post('/topic/delete',topic),
+    updata:(topic) => request.post('/topic/updata',topic)
+}
 };

@@ -12,22 +12,6 @@
 </template>
 
 <script setup>
-import api from '@/api/index.js'
-// import { useAppStore } from '@/stores'
-
-// const store = useAppStore()
-// const quirevar = ref('')
-
-// function quire(){
-//   if(!quirevar.value){
-//     return
-//   }
-//   api.quireAttribute( {
-//     "name" : quirevar.value
-//   } ).then(res=>{
-//     store.attributes = res.data
-//   })
-// }
 </script>
 
 <style>

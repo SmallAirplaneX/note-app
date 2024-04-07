@@ -6,3 +6,4 @@ export function setupStore(app) {
 }
 
 export * from './components'
+export * from './pages'

@@ -9,44 +9,61 @@ export const useObjectStore = defineStore("object", ()=>{
             name:'',
             templateId:'',
         },
-        information:[],
+        informations:[],
     })
+    const x = ref(false)
+    const temp = ref([])
+    const state = ref(false)
     const list =ref([])
-    const options = ref([
-    ])
+    const templates = ref([])
     const page = ref("1")
-    const activeName = ref('first')
     function submit (){
-        api.object.create(this.form).then(
-            this.flash()
-        )
+        this.form.informations = this.temp
+        api.object.create(this.form).then(res =>{
+                state.value = false;
+                this.flash()
+        })
+    }
+    function  flashTemplate(){
+        api.template.list(this.page).then((res) => {
+            templates.value = res.data.data
+        });
     }
     function flash(){
         api.object.list(this.page).then((res) => {
-            this.list = res.data.data
-        });
-        api.template.list(this.page).then((res) => {
-            this.options = res.data.data
+            list.value = res.data.data
         });
     }
-    function change () {
-        if (this.form.myobject.templateId === '' ){
+ function change () {
+        if(this.form.myobject.templateId == ''){
             return
         }
-        api.template.concepts(this.form.myobject.templateId).then((res) => {
-            this.form.information = res.data.data
-        })
-    }
-
-    function handleUpdata (e){
-        this.activeName = 'first'
-        this.form.myobject.name = e.row.name
-
-        let promise = new Promise((resolve, reject) => {
-            api.object.getInfById(e.row.id).then((res) => {
-                this.form.information = res.data.data
-                resolve();
+        if(!this.x){
+            this.x = true
+            console.log("执行")
+            api.template.concepts(this.form.myobject.templateId).then((res) => {
+                this.temp = res.data.data
+                console.log("执行api")
             })
+            return
+        }
+        console.log("取消")
+       
+        
+    }
+    function openForm (){
+        this.temp = []
+        this.form = {myobject:{id:'',name:'',templateId:''},informations:[]}
+        this.state = true
+    }
+     function handleUpdata (e){
+        this.x = true
+        
+         api.object.getInfById(e.row.id).then((res) => {
+                this.temp = res.data.data
+                this.form.myobject = e.row
+                this.state = true
+                
         })
     }
 
@@ -55,6 +72,11 @@ export const useObjectStore = defineStore("object", ()=>{
             this.flash()
         })
     }
+    function updata(){
+        api.object.updata(this.form).then(res => {
+            this.flash()
+        })
+    }
 
-    return {options,form,list,change,submit,flash,page,handleUpdata,handleDelete,activeName}
+    return {templates,form,list,change,submit,flash,page,handleUpdata,handleDelete,updata,state,openForm,flashTemplate,temp}
 });

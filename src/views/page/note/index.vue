@@ -1,6 +1,17 @@
 <template>
-  主题：<el-input v-model="input" style="width: 240px" placeholder="主题名称" /><br/>
-  视角
+  <el-select
+      v-model="value"
+      placeholder="Select"
+      size="large"
+      style="width: 240px"
+  >
+    <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+    />
+  </el-select>
   <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
     <el-tab-pane label="JavaScript是什么？" name="first">User</el-tab-pane>
     <el-tab-pane label="学习JavaScript" name="second">Config</el-tab-pane>
