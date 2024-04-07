@@ -14,7 +14,6 @@
             filterable
             placeholder="选择模板"
             style="width: 240px"
-            :change="change()"
         >
           <el-option
               v-for="template in templates"
@@ -52,10 +51,18 @@ import { useObjectStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 
 const store = useObjectStore()
-const { openForm,change,submit,updata } = useObjectStore()
+const { openForm,submit,updata } = useObjectStore()
 const { state,form,templates,temp} = storeToRefs(store)
 
 onMounted(() => {
   store.flashTemplate()
 })
+watch(
+  ()=>store.form.myobject.templateId,
+  () => {
+        if(!store.x){
+          store.change()
+        }
+  })
+
 </script>

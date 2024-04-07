@@ -11,6 +11,7 @@ export const useObjectStore = defineStore("object", ()=>{
         },
         informations:[],
     })
+    //避免一些问题
     const x = ref(false)
     const temp = ref([])
     const state = ref(false)
@@ -34,22 +35,14 @@ export const useObjectStore = defineStore("object", ()=>{
             list.value = res.data.data
         });
     }
- function change () {
+   
+    function change () {
         if(this.form.myobject.templateId == ''){
             return
         }
-        if(!this.x){
-            this.x = true
-            console.log("执行")
-            api.template.concepts(this.form.myobject.templateId).then((res) => {
-                this.temp = res.data.data
-                console.log("执行api")
-            })
-            return
-        }
-        console.log("取消")
-       
-        
+        api.template.concepts(this.form.myobject.templateId).then((res) => {
+            this.temp = res.data.data
+        })
     }
     function openForm (){
         this.temp = []
@@ -58,12 +51,11 @@ export const useObjectStore = defineStore("object", ()=>{
     }
      function handleUpdata (e){
         this.x = true
-        
+        this.form.myobject = e.row
          api.object.getInfById(e.row.id).then((res) => {
                 this.temp = res.data.data
-                this.form.myobject = e.row
                 this.state = true
-                
+                this.x = false
         })
     }
 
@@ -78,5 +70,5 @@ export const useObjectStore = defineStore("object", ()=>{
         })
     }
 
-    return {templates,form,list,change,submit,flash,page,handleUpdata,handleDelete,updata,state,openForm,flashTemplate,temp}
+    return {templates,form,list,change,submit,flash,page,handleUpdata,handleDelete,updata,state,openForm,flashTemplate,temp,x}
 });
