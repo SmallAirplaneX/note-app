@@ -1,7 +1,7 @@
 <template>
     <el-table :data="store.concepts"  :height=props.height>
       <el-table-column type="index" label="序号" width="60" />
-      <el-table-column prop="name" label="属性名称" width="250" />
+      <el-table-column prop="name" label="概念名称" width="250" />
       <el-table-column prop="id" label="索引" />
       <el-table-column prop="type" label="类型" width="90"/>
       <el-table-column prop="explanation" label="解释" />
@@ -20,15 +20,13 @@
         </template>
 
       </el-table-column>
-  </el-table>
+   </el-table>
 
   <el-pagination
-      v-model:current-page="currentPage"
-      :small="small"
-      :disabled="disabled"
-      :background="background"
+      v-model:current-page="store.page"
+      :background="true"
       layout="prev, pager, next, jumper"
-      :total="1000"
+      :page-count="Math.ceil(store.count / 15)"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
   />
@@ -40,9 +38,6 @@
 import { useAttributeStore ,useTemplateStore} from '@/stores'
 import { ref } from 'vue'
 
-const currentPage = ref(1)
-const small = ref(false)
-const background = ref(true)
 const disabled = ref(false)
 const search = ref('')
 
@@ -60,7 +55,6 @@ const store = useAttributeStore()
 const store2 = useTemplateStore()
 const props = defineProps(['height','add'])
 onMounted(() => {
-  store.page = 1
   store.flash()
 })
 </script>

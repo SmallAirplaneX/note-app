@@ -1,9 +1,9 @@
 
 <template>
-  <el-button @click="openForm()">
+  <el-button @click="openForm">
     新建
   </el-button>
-  <el-dialog v-model="state" title="创建属性" width="500" label-position='left' >
+  <el-dialog v-model="state" title="创建对象" width="500" label-position='left' >
     <el-form :model="form" label-width="auto" >
       <el-form-item label="名称">
         <el-input v-model="form.myobject.name" style="width: 240px" placeholder="名称" />
@@ -14,6 +14,7 @@
             filterable
             placeholder="选择模板"
             style="width: 240px"
+            @change="change"
         >
           <el-option
               v-for="template in templates"
@@ -22,7 +23,6 @@
               :value="template.id"
           />
         </el-select>
-        {{form}}
       </el-form-item>
       <template v-for="information in temp">
 
@@ -37,8 +37,8 @@
         </el-form-item>
       </template>
 
-      <el-button @click="submit()">创建对象</el-button>
-      <el-button @click="updata()">更新对象</el-button>
+      <el-button @click="submit">创建对象</el-button>
+      <el-button @click="updata">更新对象</el-button>
     </el-form>
   </el-dialog>
 
@@ -51,18 +51,11 @@ import { useObjectStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 
 const store = useObjectStore()
-const { openForm,submit,updata } = useObjectStore()
+const { openForm,submit,updata,change } = useObjectStore()
 const { state,form,templates,temp} = storeToRefs(store)
 
 onMounted(() => {
   store.flashTemplate()
 })
-watch(
-  ()=>store.form.myobject.templateId,
-  () => {
-        if(!store.x){
-          store.change()
-        }
-  })
 
 </script>

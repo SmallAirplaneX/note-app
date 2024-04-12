@@ -24,11 +24,27 @@
         </template>
       </el-table-column>
   </el-table>
+
+  <el-pagination
+      v-model:current-page="currentPage"
+      :background="true"
+      layout="prev, pager, next, jumper"
+      :page-count="Math.ceil(store.count / 15)"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+  />
 </template>
 
 <script setup>
 import { useTemplateStore } from '@/stores'
+import {storeToRefs} from "pinia";
+
 const store = useTemplateStore()
+
+const { handleSizeChange,handleCurrentChange } = store
+const { currentPage } = storeToRefs(store)
+
+
 
 onMounted(() => {
   store.flash()

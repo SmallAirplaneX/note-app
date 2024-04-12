@@ -40,7 +40,7 @@
             </template>
             <template #append>
               <el-select v-model="select" placeholder="搜索范围" style="width: 85px">
-                <el-option label="属性" value="1" />
+                <el-option label="概念" value="1" />
                 <el-option label="模板" value="2" />
                 <el-option label="对象" value="3" />
                 <el-option label="笔记" value="4" />
@@ -70,11 +70,12 @@
         <el-button @click="store2.logout()">退出登陆</el-button>
       </el-popover>
 
-      <n-button style="padding-top: 8px;" text>
-        <n-icon size="1.5rem">
-          <SettingsOutline/>
-        </n-icon>
-      </n-button>
+      <el-button text>
+        <el-icon size="1.5rem" >
+          <SettingsOutline />
+        </el-icon>
+      </el-button>
+<!--      <el-button @click="change">{{isDark ? "白天" : "晚上"}}</el-button>-->
     </div>
 
   </div>

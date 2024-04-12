@@ -12,22 +12,24 @@
                 <el-button  type="primary" size="small" @click="store.handleUpdata(scope)">变更</el-button>
       </template>
     </el-table-column>
-    <!--    <el-pagination-->
-    <!--        v-model:current-page="currentPage"-->
-    <!--        :small="small"-->
-    <!--        :disabled="disabled"-->
-    <!--        :background="background"-->
-    <!--        layout="prev, pager, next, jumper"-->
-    <!--        :total="1000"-->
-    <!--        @size-change="handleSizeChange"-->
-    <!--        @current-change="handleCurrentChange"-->
-    <!--    />-->
   </el-table>
+  <el-pagination
+      v-model:current-page="currentPage"
+      :background="true"
+      layout="prev, pager, next, jumper"
+      :page-count="Math.ceil(store.count / 15)"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+  />
 </template>
 <script setup>
 import { useObjectStore } from '@/stores'
 
+import {storeToRefs} from "pinia";
 const store = useObjectStore()
+
+const { handleSizeChange,handleCurrentChange } = store
+const { currentPage} = storeToRefs(store)
 
 onMounted(() => {
   store.flash()

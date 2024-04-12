@@ -10,7 +10,7 @@
       <template #title>
         <span>信息管理</span>
       </template>
-      <el-menu-item index="/data-manager/attributes">属性管理</el-menu-item>
+      <el-menu-item index="/data-manager/attributes">概念管理</el-menu-item>
       <el-menu-item index="/data-manager/templates">模板管理</el-menu-item>
       <el-menu-item index="/data-manager/objects">对象管理</el-menu-item>
     </el-sub-menu>

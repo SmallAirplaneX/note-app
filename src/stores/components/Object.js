@@ -11,13 +11,12 @@ export const useObjectStore = defineStore("object", ()=>{
         },
         informations:[],
     })
-    //避免一些问题
-    const x = ref(false)
+    const count = ref(0)
     const temp = ref([])
     const state = ref(false)
     const list =ref([])
     const templates = ref([])
-    const page = ref("1")
+    const currentPage = ref(1)
     function submit (){
         this.form.informations = this.temp
         api.object.create(this.form).then(res =>{
@@ -26,18 +25,22 @@ export const useObjectStore = defineStore("object", ()=>{
         })
     }
     function  flashTemplate(){
-        api.template.list(this.page).then((res) => {
+        api.template.list(this.currentPage).then((res) => {
             templates.value = res.data.data
         });
     }
     function flash(){
-        api.object.list(this.page).then((res) => {
+        api.object.list(this.currentPage).then((res) => {
             list.value = res.data.data
+        });
+        api.object.getCount().then((res) => {
+            //求res.data.data能被15整除几次
+            this.count = res.data.data;
         });
     }
    
     function change () {
-        if(this.form.myobject.templateId == ''){
+        if(this.form.myobject.templateId === ''){
             return
         }
         api.template.concepts(this.form.myobject.templateId).then((res) => {
@@ -50,12 +53,10 @@ export const useObjectStore = defineStore("object", ()=>{
         this.state = true
     }
      function handleUpdata (e){
-        this.x = true
         this.form.myobject = e.row
          api.object.getInfById(e.row.id).then((res) => {
                 this.temp = res.data.data
                 this.state = true
-                this.x = false
         })
     }
 
@@ -65,10 +66,20 @@ export const useObjectStore = defineStore("object", ()=>{
         })
     }
     function updata(){
+        this.form.informations = this.temp
         api.object.updata(this.form).then(res => {
             this.flash()
+            this.state = false
         })
     }
+    function handleSizeChange(val)  {
+        this.currentPage = val
+        this.flash()
+    }
+    function handleCurrentChange(val) {
+        this.currentPage = val
+        this.flash()
+    }
 
-    return {templates,form,list,change,submit,flash,page,handleUpdata,handleDelete,updata,state,openForm,flashTemplate,temp,x}
+    return {templates,form,list,change,submit,flash,currentPage,handleUpdata,handleDelete,updata,state,openForm,flashTemplate,temp,handleSizeChange,handleCurrentChange,count}
 });

@@ -4,6 +4,7 @@ import api from "@/api";
 
 export const useTemplateStore = defineStore("template", ()=>{
     const list = ref([])
+    const count = ref(0)
     const concept = ref({
          id : '',
         name: '',
@@ -20,7 +21,7 @@ export const useTemplateStore = defineStore("template", ()=>{
     const selection = ref(true)
     const model = ref('创建')
     const state = ref(false)
-    const page = ref('1')
+    const currentPage = ref(1)
     const form = ref({
         id : '',
         template: {
@@ -58,7 +59,7 @@ export const useTemplateStore = defineStore("template", ()=>{
         }
     }
     function flash() {
-        api.template.list(this.page).then((res) => {
+        api.template.list(this.currentPage).then((res) => {
             this.list = res.data.data
             this.options = res.data.data.map(item => {
                 return {
@@ -67,6 +68,9 @@ export const useTemplateStore = defineStore("template", ()=>{
                 }
             })
         });
+        api.template.getCount().then(res =>{
+            this.count = res.data.data ;
+        })
     }
     function submit() {
         this.form.concepts = this.form.concepts.concat(this.conceptsFromTemplate)
@@ -118,7 +122,14 @@ export const useTemplateStore = defineStore("template", ()=>{
             this.form.concepts = this.form.concepts.filter(item => !this.conceptsFromTemplate.find(item2 => item2.id === item.id))
         })
     }
+    function handleSizeChange(val)  {
+        this.currentPage = val
+        this.flash()
+    }
+    function handleCurrentChange(val) {
+        this.currentPage = val
+        this.flash()
+    }
 
-
-    return { selection,state,form,openForm,submit,handleDelete,closeForm,handleUpdata,removeAtt,flash,add,model,page,concept,list,options ,filterMethod,change,conceptsFromTemplate}
+    return { selection,state,form,openForm,submit,handleDelete,closeForm,handleUpdata,removeAtt,flash,add,count,model,currentPage,concept,list,options ,filterMethod,change,conceptsFromTemplate,handleSizeChange,handleCurrentChange}
 });

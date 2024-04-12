@@ -28,5 +28,6 @@
 .main-con {
   grid-area: 2 / 1 / 3 / 2;
   overflow: auto;
+  view-transition-name: sidebar;
 }
 </style>

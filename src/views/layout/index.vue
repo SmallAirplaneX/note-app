@@ -1,7 +1,7 @@
 <template>
 <div class="grid full">
-        <div class="logo">
-            <span>笔记构建</span>
+        <div class="logo" style="text-align: center;font-size: 2.4rem">
+            笔记构建
         </div>
         <div class="top">
             <TopToolbar />

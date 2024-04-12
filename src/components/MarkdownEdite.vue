@@ -16,22 +16,64 @@
 //     after: () => {
 //     },
 //   });
-// });
-const input = ref('')
-const output = ref('')
+// });\
+import { useNoteStore } from "@/stores/components/Note.js";
+import { storeToRefs } from 'pinia'
 
-function convert() {
-  const converter = new showdown.Converter({tables: true});
-  output.value = converter.makeHtml(input.value);
+
+
+const store = useNoteStore()
+const { convert } = store
+const { input,triggerRef} = storeToRefs(store)
+
+function mousemoveHandler (e) {
+    store.position = DOMRect.fromRect({
+      width: 0,
+      height: 0,
+      x: e.clientX,
+      y: e.clientY,
+    })
 }
+
+onMounted(() => {
+  document.addEventListener('mousemove', mousemoveHandler)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('mousemove', mousemoveHandler)
+})
 </script>
 
 
 <template>
 <!--  <div id="vditor" />-->
+
+
+  <el-popover
+      v-model:visible="store.visible"
+      trigger="click"
+      virtual-triggering
+      :virtual-ref="triggerRef"
+  >
+    <el-space direction="vertical">
+      <template  v-for="(item,index) in store.auto">
+        <el-button  @click="store.pase(item)">
+          {{item.name}}
+          {{item.id}}
+        </el-button>
+
+      </template>
+    </el-space>
+  </el-popover>
+
   <div class="container">
-    <el-input v-model="input" type="textarea" @input="convert" @keydown.tab.stop=""></el-input>
-    <div class="render" v-html="output" type="textarea"></div>
+    <el-input v-model="input" type="textarea" @input="convert" ></el-input>
+    <VueShowdown
+        class="render"
+        :markdown="input"
+        flavor="github"
+        :options="{ emoji: true }"
+    />
   </div>
 </template>
 
@@ -41,12 +83,14 @@ function convert() {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
   grid-gap: 10px;
-  height: 100%;
+  height: 550px;
 }
 .render{
   background-color: #f5f5f5;
   border-radius: 15px;
   padding : 0 10px;
+  max-height: 550px;
+  overflow:auto;
 }
 :deep(.el-textarea__inner) {
   height: 100%;
@@ -54,6 +98,8 @@ function convert() {
   border-radius: 15px;
   border: none;
   padding : 10px;
+  max-height: 550px;
+  overflow:auto;
 }
 
 </style>

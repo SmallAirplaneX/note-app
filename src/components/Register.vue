@@ -71,9 +71,11 @@ const rules = reactive({
     </el-form-item>
     <el-form-item>
       <el-button
-          :class="(store.registerForm.name === '' || store.registerForm.password === '' || store.registerForm.password2 === ''|| store.registerForm.password !== store.registerForm.password2) ? 'submit' : 'en'"
+          :class="(store.registerForm.name === '' || store.registerForm.password === '' || store.registerForm.password2 === ''||
+          store.registerForm.password !== store.registerForm.password2) ? 'submit' : 'en'"
           type="primary"
-          :disabled="store.registerForm.name === '' || store.registerForm.password === '' || store.registerForm.password2 === ''|| store.registerForm.password !== store.registerForm.password2"
+          :disabled="store.registerForm.name === '' || store.registerForm.password === '' || store.registerForm.password2 === ''||
+          store.registerForm.password !== store.registerForm.password2"
           @click="store.register()">注册</el-button>
     </el-form-item>
     <el-form-item>

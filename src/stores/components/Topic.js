@@ -10,36 +10,70 @@ export const useTopicStore = defineStore("topic", ()=>{
         name : '',
         perspectiveId : []
     })
+    const count = ref(0)
+    const notes = ref([])
     const options = ref([])
     const state = ref(false)
     const tableData = ref([])
+    const currentPage = ref(1)
     function openForm(){
         state.value = true
+        this.form ={
+            id : '',
+            name : '',
+            perspectiveId : []
+        }
     }
     function flash(){
-        api.topic.list(1).then(res=>{
+        api.topic.list(this.currentPage).then(res=>{
             this.tableData = res.data.data
         })
+        api.note.list(this.currentPage).then(res=>{
+            this.options = res.data.data
+        })
+        api.topic.getCount().then((res) => {
+            this.count = res.data.data;
+        });
     }
     function submit(){
         api.topic.create(this.form).then(res=>{
             this.flash()
+            this.state = false
         })
     }
     function updata(){
-        api.topic.updata(this.form).then(res=>{
+        api.note.updata(this.form).then(res => {
             this.flash()
+            this.state = false
         })
     }
     function handleUpdata(e){
-        // api.topic.updata(e.row.id).then(res=>{
-        //     this.flash()
-        // })
+        this.state = true
+        console.log(e.row)
+
+        api.topic.getNoteByID(e.row.id).then(res=>{
+            this.notes = res.data.data
+        })
+
+        this.form.id = e.row.id
+        this.form.name = e.row.name
+        this.form.perspectiveId = e.row.perspectiveId
+    }
+    function change (){
+
     }
     function handleDelete(e){
         api.topic.delete({id:e.row.id}).then(res=>{
             this.flash()
         })
     }
-    return { tableData,state,openForm,form,options,submit,updata,flash,handleUpdata,handleDelete }
+    function handleSizeChange(val)  {
+        this.currentPage = val
+        this.flash()
+    }
+    function handleCurrentChange(val) {
+        this.currentPage = val
+        this.flash()
+    }
+    return { tableData,state,openForm,form,options,submit,updata,flash,handleUpdata,handleDelete,notes,change,currentPage,handleSizeChange ,handleCurrentChange,count}
 });

@@ -7,7 +7,7 @@
       <el-form-item label="模板名称">
         <el-input v-model="store.form.template.name"/>
       </el-form-item>
-      <el-form-item label="已添加属性">
+      <el-form-item label="已添加概念">
         <el-tag v-for="concept in store.form.concepts" closable @close="store.removeAtt(concept)">
           {{ concept.name }}
         </el-tag>

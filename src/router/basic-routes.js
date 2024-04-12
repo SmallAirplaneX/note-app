@@ -31,7 +31,7 @@ export const basicRoutes = [
             {
                 path: "objects",
                 name: "Objects",
-                component: () => import("@/views/page/manage/object/index.vue"),
+                component: () => import("@/views/page/infmanage/object/index.vue"),
                 meta: {
                     title: "对象管理",
                 },
@@ -39,7 +39,7 @@ export const basicRoutes = [
             {
                 path: "templates",
                 name: "Templates",
-                component: () => import("@/views/page/manage/template/index.vue"),
+                component: () => import("@/views/page/infmanage/template/index.vue"),
                 meta: {
                     title: "模板管理",
                 },
@@ -47,7 +47,7 @@ export const basicRoutes = [
             {
                 path: "attributes",
                 name: "Attributes",
-                component: () => import("@/views/page/manage/concept/index.vue"),
+                component: () => import("@/views/page/infmanage/concept/index.vue"),
                 meta: {
                     title: "属性管理",
                 },
@@ -55,7 +55,7 @@ export const basicRoutes = [
             {
                 path: "note",
                 name: "Note",
-                component: () => import("@/views/page/note/index.vue"),
+                component: () => import("@/views/page/knomanage/note/index.vue"),
                 meta: {
                     title: "笔记管理",
                 },
@@ -63,7 +63,7 @@ export const basicRoutes = [
             {
                 path: "topic",
                 name: "Topic",
-                component: () => import("@/views/page/manage/topic/index.vue"),
+                component: () => import("@/views/page/knomanage/topic/index.vue"),
                 meta: {
                     title: "主题管理",
                 },
